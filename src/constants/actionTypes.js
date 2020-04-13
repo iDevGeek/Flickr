@@ -1,0 +1,4 @@
+// Data
+export const DATA_LOAD_START = 'DATA_LOAD_START';
+export const DATA_LOAD_COMPLETE = 'DATA_LOAD_COMPLETE';
+export const DATA_LOAD_ERROR = 'DATA_LOAD_ERROR';
