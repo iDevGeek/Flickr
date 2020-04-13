@@ -1,53 +1,37 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import ReactHtmlParser from 'react-html-parser';
+
+import './Card.scss';
+import Avatar from  '../Avatar';
+import Views from  '../Views';
+import FlickrLink from  '../FlickrLink';
+import Tags from '../Tags';
+
 import {getImageSrc} from '../../utils/flickr';
 
-const Link = ({item, fullPath, children}) => {
-  const {id, pathalias } = item;
-  
-  let flickrOwnerPath = (pathalias) ? `https://www.flickr.com/photos/${pathalias}` : null;
-  if (flickrOwnerPath && fullPath) {
-    flickrOwnerPath += `/${id}`;
-  }
-
-  if (!flickrOwnerPath) {
-    return (<span className="link link--empty">
-      {children}
-    </span>)
-  }
-  return (
-    <a className="link" href={`${flickrOwnerPath}`}>{children}</a>
-  )
-}
-
 const Card = ({item}) => {
-  const {title, id, ownername, description, tags, pathalias } = item;
-  const allTags = (typeof tags === 'string' && tags.length > 0)? tags.split(' ') : [];
-  
+  const {title, id, ownername, description, tags, pathalias, views } = item; 
   return (
     <div className="card">
-      <div className="card-image">
+      <div className="card__image">
         <img src={getImageSrc(item)} alt="" />
       </div>
-      <div className="card-content">
-        <div className="card-title">
-          <Link item={item} fullPath>{title}</Link> by <Link item={item}>{ownername}</Link>
+      <div className="card__content">
+        
+        <Views views={views} />
+        <h3 className="card__title">
+          <FlickrLink item={item} fullPath>{title}</FlickrLink>
+        </h3>
+        <h4 className="card__author">
+          <span>by</span><Avatar item={item} /><FlickrLink item={item}>{ownername}</FlickrLink>
+        </h4>
+
+        <div className={`card__description ${(!description._content)? "card__description--empty": ''}`}>
+          Description: <span>{(description._content)? ReactHtmlParser(description._content): 'no description...'}</span>
         </div>
-        <div className="card-description">
-          Description: {(description._content)? description._content: 'N/A'}
-        </div>
-        <div className="card-tags">
-          <ul>
-          {allTags.map((tag, index)=>{
-            return (
-              <li key={`${tag}${index}`}>
-                {tag}
-              </li>
-            )
-          })}
-          </ul>
-        </div>
+        <Tags tags={tags} />
       </div>
     </div>
   );

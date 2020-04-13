@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+
+.card__views {
+  color: $grey;
+  margin: 4px 0 4px;
+  font-weight: 400;
+  font-size: 14px;
+  display: flex;
+
+  .card__views--icon {
+    width: 16px;
+    padding-right: 8px;
+    svg {
+      fill: $grey;
+    }
+  }
+}

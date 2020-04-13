@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+
+.card__tags {
+  .card__tags--button {
+    display: block;
+    text-align: center;
+
+    a {
+      display: inline-block;
+      margin: auto;
+      padding: 8px 32px 8px 12px;
+      color: $white;
+      background: $grey;
+      border-radius: 3px;
+      text-decoration: none;
+    }    
+  }
+  .card__tags--expanded {
+  }
+
+  ul {
+    
+  }
+}

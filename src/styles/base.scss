@@ -1,0 +1,14 @@
+@import './reset';
+@import './variables';
+
+body {
+  font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+  background-color: $very-light-grey;
+  color: $black;
+  font-weight: 400;
+}
+
+.page {
+  max-width: 1200px;
+  margin: auto;
+}

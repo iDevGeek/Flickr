@@ -1,0 +1,19 @@
+@import '../../styles/variables';
+
+.avatar {
+  box-sizing: border-box;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  width: $avatar-width;
+  height: $avatar-height;
+  display: block;
+  border: 1px solid rgba($black, 0.6);
+  margin: 0 8px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+}

@@ -24,11 +24,11 @@ class IndexPage extends Component {
     const {data} = this.props;
     if (!data.results) {
       return (
-        <div>Loading</div>
+        <div className="page page--loading">Loading</div>
       )
     }
     return (
-      <div>
+      <div className="page">
         <ImageGallery data={data.results} />
       </div>
     );
