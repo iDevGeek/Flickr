@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 
 import * as dataActions from '../actions/dataActions';
 import ImageGallery from '../components/ImageGallery';
+import Header from '../components/Header';
 
 class IndexPage extends Component {
   
@@ -29,7 +30,10 @@ class IndexPage extends Component {
     }
     return (
       <div className="page">
-        <ImageGallery data={data.results} />
+        <Header />
+        <section className="content">
+          <ImageGallery data={data.results} />
+        </section>
       </div>
     );
   }

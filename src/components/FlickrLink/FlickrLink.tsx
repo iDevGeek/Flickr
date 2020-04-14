@@ -1,10 +1,17 @@
-import React, { Component } from 'react';
+import React, { FunctionComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import {itemPropTypes} from '../../types';
+import {ItemType} from '../../types/typescript';
+
 import './FlickrLink.scss';
 
-const FlickrLink = ({item, fullPath, children}) => {
+type FlickrLinkProps = {
+  item: ItemType, 
+  fullPath: string
+}
+
+const FlickrLink: FunctionComponent<FlickrLinkProps> = ({item, fullPath, children}) => {
   const {id, pathalias } = item;
   
   let flickrOwnerPath = (pathalias) ? `https://www.flickr.com/photos/${pathalias}` : null;
@@ -22,10 +29,10 @@ const FlickrLink = ({item, fullPath, children}) => {
   )
 }
 
-FlickrLink.propTypes = {
-  item: itemPropTypes.isRequired,
-  fullPath: PropTypes.bool,
-  children: PropTypes.oneOfType([PropTypes.element,PropTypes.string]).isRequired,
-};
+// FlickrLink.propTypes = {
+//   item: itemPropTypes.isRequired,
+//   fullPath: PropTypes.bool,
+//   children: PropTypes.oneOfType([PropTypes.element,PropTypes.string]).isRequired,
+// };
 
 export default FlickrLink;

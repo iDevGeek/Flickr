@@ -13,12 +13,11 @@ import Image from '../Image';
 import {getImageSrc} from '../../utils/flickr';
 
 const Card = ({item}) => {
-  const {title, id, ownername, description, tags, pathalias, views } = item; 
+  const {title, id, ownername, description, tags, pathalias, views, url_m, height_m, width_m } = item; 
   return (
     <div className="card">
-      <Image item={item} />
+      <Image src={url_m} width={width_m} height={height_m} />
       <div className="card__content">
-        
         <Views views={views} />
         <h3 className="card__title">
           <FlickrLink item={item} fullPath>{title}</FlickrLink>

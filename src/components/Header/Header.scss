@@ -1,0 +1,23 @@
+@import '../../styles/breakpoints';
+@import '../../styles/variables';
+
+.header {
+  height: $header-height;
+  background-color: $black;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+}
+
+.header__search {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  vertical-align: middle;
+  svg {
+    fill: $white;
+  }
+}

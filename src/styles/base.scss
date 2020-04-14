@@ -10,7 +10,11 @@ body {
 }
 
 .page {
+  width: 100%;
+}
+.content {
   max-width: 1200px;
   margin: auto;
-  padding: 0 16px 16px;
+  padding: $header-height 16px 16px;
+
 }
