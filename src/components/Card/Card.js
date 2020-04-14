@@ -8,6 +8,7 @@ import Avatar from  '../Avatar';
 import Views from  '../Views';
 import FlickrLink from  '../FlickrLink';
 import Tags from '../Tags';
+import Image from '../Image';
 
 import {getImageSrc} from '../../utils/flickr';
 
@@ -15,9 +16,7 @@ const Card = ({item}) => {
   const {title, id, ownername, description, tags, pathalias, views } = item; 
   return (
     <div className="card">
-      <div className="card__image">
-        <img src={getImageSrc(item)} alt="" />
-      </div>
+      <Image item={item} />
       <div className="card__content">
         
         <Views views={views} />

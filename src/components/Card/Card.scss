@@ -4,21 +4,31 @@
 .card {
   border-radius: 3px;
   border: 1px solid $light-grey;
-  max-width: $card-max-width;
+  margin: 0 0 16px;
+  position: relative;
+  background: $white;
+  width: 100%;
+  max-width: 100%;
 
-  &__image {
-    img {
-      width: 100%;
-      max-width: 100%;
-    }
+  @include small {
+    margin: 0 8px 16px;
+    width: $card-max-width;
+    max-width: $card-max-width;
   }
+
   &__content {
-    padding: 0 12px 8px 12px;
+    padding: 0 12px 56px 12px;
   }
   &__title {
-    font-size: 36px;
+    font-size: 26px;
     font-weight: 300;
     margin: 0 0 16px;
+    line-height: 1.2em;
+    display: block;
+    height: 31px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 
     a {
       text-decoration: none;
@@ -27,6 +37,25 @@
   }
   &__description {
     margin: 0 0 16px;
+    overflow: hidden;
+    font-size: 16px;
+    line-height: 1.4em;
+    height: 180px;
+    position: relative;
+
+    &::after {
+      content: ' ';
+      height: 32px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-image: linear-gradient(to top, $white, rgba($white, 0.1));
+    }
+
+    a {
+      color: $grey;
+    }
   }
   &__description--empty {
     span {
@@ -40,12 +69,5 @@
     justify-content: flex-start;
     align-items: center;
     margin: 0 0 8px 0;
-
-    a {
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 18px;
-      color: $black;
-    }
   }
 }

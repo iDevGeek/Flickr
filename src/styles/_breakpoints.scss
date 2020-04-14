@@ -5,3 +5,9 @@
     @content;
   }
 }
+
+@mixin small {
+  @media only screen and (min-width: $small-screen-min-width) {
+    @content;
+  }
+}

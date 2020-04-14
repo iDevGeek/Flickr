@@ -14,6 +14,9 @@ export const itemPropTypes = shape({
   "description": shape({
       "_content": string
   }),
+  "height_n": number,
+  "width_n": number,
+  "url_n": string,
   "ownername": string,
   "tags": string,
   "pathalias": string

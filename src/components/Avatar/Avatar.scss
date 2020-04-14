@@ -10,7 +10,8 @@
   display: block;
   border: 1px solid rgba($black, 0.6);
   margin: 0 8px;
-
+  min-width: $avatar-width;
+  
   img {
     width: 100%;
     height: 100%;

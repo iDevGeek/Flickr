@@ -6,10 +6,13 @@
   font-weight: 400;
   font-size: 14px;
   display: flex;
+  align-items: center;
 
   .card__views--icon {
     width: 16px;
     padding-right: 8px;
+    vertical-align: middle;
+    line-height: 1em;
     svg {
       fill: $grey;
     }

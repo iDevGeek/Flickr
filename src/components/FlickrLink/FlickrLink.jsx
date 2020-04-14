@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {itemPropTypes} from '../../types';
+import './FlickrLink.scss';
 
 const FlickrLink = ({item, fullPath, children}) => {
   const {id, pathalias } = item;

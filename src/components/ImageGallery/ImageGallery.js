@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import './ImageGallery.scss';
 import Card from '../Card';
 
 const ImageGallery = ({data}) => {
