@@ -29,6 +29,7 @@ export interface StoreType {
     endPoint: null | string,
     loading: boolean,
     error: null | string,
-    results: []
+    results: [],
+    tags: null | []
   }
 }

@@ -27,7 +27,7 @@ class IndexPage extends Component {
     }
     return (
       <div className="page">
-        <Header data={data} setKeyword={actions.setKeyword} /> 
+        <Header data={data} setKeyword={actions.setKeyword} keyword={keyword} /> 
         <section className="content">
           <ImageGallery data={data.results} keyword={keyword} />
         </section>

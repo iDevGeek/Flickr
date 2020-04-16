@@ -1,10 +1,16 @@
 import React, { Component, MouseEvent } from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
+import * as searchActions from '../../actions/searchActions';
+
+import Tag from '../Tag';
 import './Tags.scss';
-import {tagsUrl} from '../../config/main';
 
 type TagsPropsType = {
-  tags: string
+  tags: string,
+  actions: any,
+  data: any
 }
 
 type TagsStateType = {
@@ -16,9 +22,18 @@ class Tags extends Component<TagsPropsType, TagsStateType> {
     super(props);
     this.state = {
       visible: false
-    }
+    };
+
+    this.onClick = this.onClick.bind(this);
+    this.onClickSelectTag = this.onClickSelectTag.bind(this);
   }
 
+  onClickSelectTag(tag: string) {
+    this.setState({visible: false});
+    if (tag) {
+      this.props.actions.setKeyword(tag);  
+    }
+  }
   onClick(event: MouseEvent) {
     const {visible} = this.state;
     event.preventDefault();
@@ -40,15 +55,13 @@ class Tags extends Component<TagsPropsType, TagsStateType> {
     return (
       <div className={`card__tags ${tagsVisible}`}>
         <span className="card__button">
-          <a href="#tags" onClick={(e)=>{this.onClick(e)}}>Tags</a>
+          <a href="#tags" onClick={this.onClick}>Tags</a>
         </span>
         <div className="card__box">
           <ul>
           {allTags.map((tag, index)=>{
             return (
-              <li key={`${tag}${index}`}>
-                <a href={`${tagsUrl}${tag}`}>{tag}</a>
-              </li>
+              <Tag tag={tag} key={`${tag}${index}`} onSelectTag={(tag)=> {this.onClickSelectTag(tag)}} />
             )
           })}
           </ul>
@@ -58,4 +71,21 @@ class Tags extends Component<TagsPropsType, TagsStateType> {
   }
 }
 
-export default Tags;
+const mapStateToProps = (state: any) => {
+  return {
+    data: state.data,
+  };
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    actions: {
+      ...bindActionCreators(searchActions, dispatch),
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Tags);
