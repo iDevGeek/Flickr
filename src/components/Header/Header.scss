@@ -12,8 +12,12 @@
 
 .header__search {
   position: absolute;
-  right: 32px;
+  right: 8px;
   top: 8px;
+
+  @include small {
+    right: 26px;
+  }
 
   input {
     font-size: 16px;

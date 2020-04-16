@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { forceCheck } from 'react-lazyload';
 
 import './ImageGallery.scss';
 import Card from '../Card';
@@ -10,6 +11,11 @@ type ImageGalleryTypes = {
 }
 
 const ImageGallery = ({data, keyword}: ImageGalleryTypes) => {
+  
+  useEffect(()=>{
+    forceCheck();
+  });
+
   return (
     <div className={`image-gallery`}>
       {

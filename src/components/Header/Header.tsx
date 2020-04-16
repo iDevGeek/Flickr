@@ -1,5 +1,4 @@
 import React, { Component, FormEventHandler, ChangeEvent } from 'react';
-import { forceCheck } from 'react-lazyload';
 
 import './Header.scss';
 
@@ -25,7 +24,7 @@ class Header extends Component<HeaderPropsType, HeaderStateType> {
     const {value} = event.target;
     this.setState({value});
     this.props.setKeyword(value);
-    forceCheck();
+   
   }
 
   componentDidMount() {
