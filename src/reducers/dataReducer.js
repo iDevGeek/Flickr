@@ -9,13 +9,15 @@ export default function dataReducer(state = initialState.data, action) {
       return objectAssign({}, state, {
         loading: false,
         error: null,
-        results: action.results
+        results: action.results,
+        tags: action.tags
       });
     case DATA_LOAD_ERROR:
       return objectAssign({}, state, {
         loading: false,
         error: action.error,
-        results: []
+        results: [],
+        tags: null
       });
     case DATA_LOAD_START:
       return objectAssign({}, state, {

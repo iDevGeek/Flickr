@@ -1,21 +1,27 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './Tags.scss';
+import React, { Component, MouseEvent } from 'react';
 
-import {formatNumber} from '../../utils/formatter';
+import './Tags.scss';
 import {tagsUrl} from '../../config/main';
 
-class Tags extends Component {
-  constructor(props) {
+type TagsPropsType = {
+  tags: string
+}
+
+type TagsStateType = {
+  visible: boolean
+}
+
+class Tags extends Component<TagsPropsType, TagsStateType> {
+  constructor(props: TagsPropsType) {
     super(props);
     this.state = {
       visible: false
     }
   }
 
-  onClick(e) {
+  onClick(event: MouseEvent) {
     const {visible} = this.state;
-    e.preventDefault();
+    event.preventDefault();
     this.setState({visible: !visible});
   }
 
@@ -51,9 +57,5 @@ class Tags extends Component {
     )
   }
 }
-
-Tags.propTypes = {
-  tags: PropTypes.string.isRequired
-};
 
 export default Tags;

@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import './Views.scss';
 
 import {formatNumber} from '../../utils/formatter';
 
-const Views = ({views}) => {
+type viewsProps = {
+  "views": string,
+}
+
+const Views = ({views}: viewsProps) => {
   return (
      <span className="views">
         <span className="views__icon">
@@ -17,9 +20,5 @@ const Views = ({views}) => {
       </span>
   )
 }
-
-Views.propTypes = {
-  views: PropTypes.string.isRequired
-};
 
 export default Views;

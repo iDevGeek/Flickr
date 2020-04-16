@@ -4,14 +4,11 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 import * as dataActions from '../actions/dataActions';
+import * as searchActions from '../actions/searchActions';
 import ImageGallery from '../components/ImageGallery';
 import Header from '../components/Header';
 
 class IndexPage extends Component {
-  
-  constructor(props) {
-    super(props);
-  }
 
   getContent() {
     this.props.actions.loadData();
@@ -22,7 +19,7 @@ class IndexPage extends Component {
   }
 
   render() {
-    const {data} = this.props;
+    const {data, keyword, actions} = this.props;
     if (!data.results) {
       return (
         <div className="page page--loading">Loading</div>
@@ -30,9 +27,9 @@ class IndexPage extends Component {
     }
     return (
       <div className="page">
-        <Header />
+        <Header data={data} setKeyword={actions.setKeyword} /> 
         <section className="content">
-          <ImageGallery data={data.results} />
+          <ImageGallery data={data.results} keyword={keyword} />
         </section>
       </div>
     );
@@ -41,6 +38,7 @@ class IndexPage extends Component {
 
 IndexPage.propTypes = {
   data: PropTypes.any,
+  keyword: PropTypes.string,
   actions: PropTypes.object.isRequired,
   match: PropTypes.object
 };
@@ -48,6 +46,7 @@ IndexPage.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    keyword: state.search.keyword,
     data: state.data,
   };
 }
@@ -56,6 +55,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     actions: {
       ...bindActionCreators(dataActions, dispatch),
+      ...bindActionCreators(searchActions, dispatch),
     }
   };
 }

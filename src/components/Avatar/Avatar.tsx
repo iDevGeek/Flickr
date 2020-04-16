@@ -1,23 +1,18 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import LazyLoad from 'react-lazyload';
 
 import './Avatar.scss';
-import {itemPropTypes} from '../../types';
 import {ItemType} from '../../types/typescript';
-
 import {getAvatarImageSrc} from '../../utils/flickr';
 
 const Avatar = ({item}: {item: ItemType}) => {
   return (
     <span className="avatar">
-      <img src={getAvatarImageSrc(item)} alt="" />
+      <LazyLoad>
+        <img src={getAvatarImageSrc(item)} alt="" />
+      </LazyLoad>
     </span>
   )
 }
-
-
-Avatar.propTypes = {
-  item: itemPropTypes.isRequired,
-};
 
 export default Avatar;

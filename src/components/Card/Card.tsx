@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
+import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 
 import './Card.scss';
@@ -9,11 +7,20 @@ import Views from  '../Views';
 import FlickrLink from  '../FlickrLink';
 import Tags from '../Tags';
 import Image from '../Image';
+import {ItemType} from '../../types/typescript';
 
-import {getImageSrc} from '../../utils/flickr';
-
-const Card = ({item}) => {
-  const {title, id, ownername, description, tags, pathalias, views, url_m, height_m, width_m } = item; 
+const Card = ({item}: {item: ItemType}) => {
+  const {
+    title, 
+    ownername, 
+    description, 
+    tags, 
+    views, 
+    url_m, 
+    height_m, 
+    width_m 
+  } = item;
+  
   return (
     <div className="card">
       <Image src={url_m} width={width_m} height={height_m} />
@@ -34,8 +41,5 @@ const Card = ({item}) => {
     </div>
   );
 }
-
-// ImageGallery.propTypes = {
-// };
 
 export default Card;
