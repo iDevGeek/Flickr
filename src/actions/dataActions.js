@@ -46,9 +46,14 @@ export function loadData() {
   return function(dispatch) {
     dispatch(startLoadingData(endPoint));
     axios.get(endPoint).then((result)=>{
-      const {photo} = result.data.photos;
-      const tags = getTags(photo);     
-      dispatch(dataLoaded(photo, tags));
+      if (!result.data.hasOwnProperty('photos')) {
+        const error = (result.data.hasOwnProperty('message'))? result.data.message : 'Unknow load error';
+        dispatch(dataLoadingError(error))
+      } else {
+        const {photo} = result.data.photos;
+        const tags = getTags(photo);     
+        dispatch(dataLoaded(photo, tags));        
+      }
     }).catch((error) => {
       dispatch(dataLoadingError(error))
     });

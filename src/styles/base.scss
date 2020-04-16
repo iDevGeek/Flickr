@@ -18,3 +18,17 @@ body {
   padding: $header-height 16px 16px;
 
 }
+
+.error, .empty-result {
+  margin: 25% auto;
+  font-size: 18px;
+  text-align: center;
+  color: $red;
+
+  strong {
+    font-weight: 500;
+  }
+}
+.empty-result {
+  color: $grey;
+}

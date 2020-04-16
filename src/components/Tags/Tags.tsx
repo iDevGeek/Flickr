@@ -10,7 +10,7 @@ import './Tags.scss';
 type TagsPropsType = {
   tags: string,
   actions: any,
-  data: any
+  data: any,
 }
 
 type TagsStateType = {

@@ -75,7 +75,7 @@ class Header extends Component<HeaderPropsType, HeaderStateType> {
       <header className="header">
 
         <div className="header__search">
-          <input type="text" autoComplete="off" onBlur={this.handleBlur} onFocus={this.handleFocus} id="search" value={this.state.value} onChange={this.handleChange} placeholder="Search by tags..." />
+          <input type="text" autoComplete="off" onBlur={this.handleBlur} onFocus={this.handleFocus} id="search" name="search" value={this.state.value} onChange={this.handleChange} placeholder="Search by tags..." />
           {
             (showTypeAhead)? 
             <div className="header__typeahead">

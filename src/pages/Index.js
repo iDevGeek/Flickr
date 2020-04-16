@@ -20,16 +20,17 @@ class IndexPage extends Component {
 
   render() {
     const {data, keyword, actions} = this.props;
-    if (!data.results) {
-      return (
-        <div className="page page--loading">Loading</div>
-      )
-    }
+    const showError = (!data.loading && data.error);
+
     return (
       <div className="page">
         <Header data={data} setKeyword={actions.setKeyword} keyword={keyword} /> 
         <section className="content">
-          <ImageGallery data={data.results} keyword={keyword} />
+          {(showError)?
+            <p className="error"><strong>Application load error:</strong> {data.error}</p>
+            :
+            <ImageGallery loading={data.loading} data={data.results} keyword={keyword} />
+          }
         </section>
       </div>
     );
