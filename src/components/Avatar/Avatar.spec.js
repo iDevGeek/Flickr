@@ -1,20 +1,20 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Avatar from './Avatar';
-import {specItem} from '../../types/specs';
+import { specItem } from '../../types/specs';
 
-const {server, owner, farm} = specItem;
+const { server, owner, farm } = specItem;
 
 describe('<Avatar />', () => {
-  describe('When data is passed to the component', ()=> {
+  describe('When data is passed to the component', () => {
     it('should render img tag with correct image path', () => {
       const wrapper = shallow(<Avatar item={specItem} />);
       const img = wrapper.find('img');
       expect(img.length).toEqual(1);
-      expect(img.prop("src")).toEqual(`https://farm${farm}.staticflickr.com/${server}/buddyicons/${owner}_l.jpg`);
+      expect(img.prop('src')).toEqual(`https://farm${farm}.staticflickr.com/${server}/buddyicons/${owner}_l.jpg`);
       expect(wrapper.find('.avatar').length).toEqual(1);
     });
-  })
+  });
 
   // it('should have a header with \'alt-header\' class', () => {
   //   const wrapper = shallow(<AboutPage />);

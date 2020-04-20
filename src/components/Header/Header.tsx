@@ -1,4 +1,4 @@
-import React, { Component, ChangeEvent, FocusEvent, useState } from 'react';
+import React, { ChangeEvent, FocusEvent, useState } from 'react';
 
 import Tag from '../Tag';
 import './Header.scss';
@@ -9,11 +9,6 @@ type HeaderPropsType = {
   data: any,
   keyword: string,
   setKeyword(keyword: string): any
-}
-
-type HeaderStateType = {
-  value: string,
-  inFocus: boolean
 }
 
 const Header = ({data, keyword, setKeyword}: HeaderPropsType) => {

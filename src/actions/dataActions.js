@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import * as types from '../constants/actionTypes';
-import {endPoint} from '../config/main';
+import { endPoint } from '../config/main';
 
 function startLoadingData(endPoint) {
   return {
@@ -13,8 +13,8 @@ function startLoadingData(endPoint) {
 function dataLoaded(results, tags) {
   return {
     type: types.DATA_LOAD_COMPLETE,
-    results: results.map(result => result),
-    tags: {...tags},
+    results: results.map((result) => result),
+    tags: { ...tags },
     lastUpdated: Date.now(),
   };
 }
@@ -28,7 +28,7 @@ function dataLoadingError(error) {
 
 function getTags(data) {
   const tags = {};
-  data.forEach((item)=>{
+  data.forEach((item) => {
     const allTags = item.tags.split(' ');
     for (let i = allTags.length - 1; i >= 0; i--) {
       const key = allTags[i];
@@ -43,19 +43,19 @@ function getTags(data) {
 }
 
 export function loadData() {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(startLoadingData(endPoint));
-    axios.get(endPoint).then((result)=>{
+    axios.get(endPoint).then((result) => {
       if (!result.data.hasOwnProperty('photos')) {
-        const error = (result.data.hasOwnProperty('message'))? result.data.message : 'Unknow load error';
-        dispatch(dataLoadingError(error))
+        const error = (result.data.hasOwnProperty('message')) ? result.data.message : 'Unknow load error';
+        dispatch(dataLoadingError(error));
       } else {
-        const {photo} = result.data.photos;
-        const tags = getTags(photo);     
-        dispatch(dataLoaded(photo, tags));        
+        const { photo } = result.data.photos;
+        const tags = getTags(photo);
+        dispatch(dataLoaded(photo, tags));
       }
     }).catch((error) => {
-      dispatch(dataLoadingError(error))
+      dispatch(dataLoadingError(error));
     });
-  }
+  };
 }
