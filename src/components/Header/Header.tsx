@@ -41,7 +41,7 @@ class Header extends Component<HeaderPropsType, HeaderStateType> {
     // set delay for mouse click to happen
     window.setTimeout(()=>{
       this.setState({inFocus: false});  
-    }, 100);
+    }, 200);
   }
 
   onClickSelectTag(tag: string) {
@@ -52,16 +52,15 @@ class Header extends Component<HeaderPropsType, HeaderStateType> {
   filterTags(tags: null | []): []{
     const {value} = this.state;
     let result: any = [];
-    if (tags && value){
-      result = Object.keys(tags).map((key)=>{
+    if (tags && value) {
+      Object.keys(tags).forEach((key)=>{
         if (key.indexOf(value) !== -1) {
-          return key;
+          const counter = tags[key].length;
+          let pair: [string, number] = [key, counter];
+          result.push(pair);
         }
-        return null;
       });
-      return result.filter((item: null | string)=>{
-        return (item !== null);
-      })
+      return result;
     }
 
     return result;
@@ -70,6 +69,7 @@ class Header extends Component<HeaderPropsType, HeaderStateType> {
   render() {
     const {keyword, data} = this.props;
     const filtered = this.filterTags(data.tags);
+    console.log(data.tags, filtered)
     const showTypeAhead = (this.state.inFocus && keyword && filtered.length > 0);
     return (
       <header className="header">
@@ -82,9 +82,11 @@ class Header extends Component<HeaderPropsType, HeaderStateType> {
               <div className="card__box">
                 <ul>
                   {
-                    filtered.map((key: string, index: number) => {
+                    filtered.map((item: [string, number], index: number) => {
+                      const key = item[0];
+                      const counter = item[1];
                       return (
-                        <Tag tag={key} key={`${key}${index}`} onSelectTag={(tag: string)=>{this.onClickSelectTag(key)}} />
+                        <Tag tag={key} counter={counter} key={`${key}${index}`} onSelectTag={(tag: string)=>{this.onClickSelectTag(key)}} />
                       )
                     })
                   }  

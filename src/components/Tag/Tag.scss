@@ -33,4 +33,21 @@
     color: $black;
     font-weight: 400;
   }
+
+  b {
+    background-color: rgba($black, 0.8);
+    color: $white;
+    font-size: 10px;
+    line-height: 16px;
+    display: inline-block;
+    border-radius: 50%;
+    padding: 0 5px;
+    height: 16px;
+    min-width: 16px;
+    box-sizing: border-box;
+    text-align: center;
+    z-index: 1;
+    margin-left: 8px;
+    transform: translateY(-2px);
+  }
 }

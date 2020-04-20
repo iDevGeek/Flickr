@@ -1,38 +1,30 @@
-import React, { Component, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 
 import './Tag.scss';
 
 type TagPropsType = {
   tag: string,
+  counter?: number,
   onSelectTag(tag: string): any
 }
 
-type TagStateType = {
-  visible: boolean
-}
-
-class Tag extends Component<TagPropsType, TagStateType> {
-  constructor(props: TagPropsType) {
-    super(props);
-
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick(event: MouseEvent) {
+const Tag = ({tag, counter, onSelectTag}: TagPropsType) => {
+  const onClick = (event: MouseEvent) => {
     event.preventDefault();
-    const {tag} = this.props;
-    this.props.onSelectTag(tag);
+    onSelectTag(tag);
   }
-
-  render() {
-    const {tag} = this.props;
-    return (
-      <li className="card__tag">
-        <a href={`#${tag}`} onClick={this.onClick}>{tag}</a>
-      </li>
-    );
-  }
-
+  return (
+    <li className="card__tag">
+      <a href={`#${tag}`} onClick={onClick}>
+        {tag}
+        {
+          (counter)? 
+            <b>{counter}</b>
+          : null
+        }
+      </a>
+    </li>
+  );
 }
 
 export default Tag;
