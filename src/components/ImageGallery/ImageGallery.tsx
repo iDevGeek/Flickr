@@ -27,13 +27,16 @@ const ImageGallery = ({data, keyword, loading}: ImageGalleryTypes) => {
     }
     return (<Card item={item} key={item.id} />);
   });
+
   const counted: any = filteredCards.filter((item) => { return (item !== null)});
+
   if (counted.length === 0) {
     if (loading) {
       return (<p className="empty-result">Loading data...</p>)
     }
     return (<p className="empty-result">Sorry, no results found</p>)
   }
+
   return (
     <div className={`image-gallery`}>
       {filteredCards}
